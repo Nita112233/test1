@@ -1,1 +1,1 @@
-web: gunicorn formdemografi.wsgi --log-file -
+web: gunicorn EMR.wsgi --log-file -
