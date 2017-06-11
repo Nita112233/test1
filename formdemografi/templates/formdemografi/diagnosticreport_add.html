@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laporan Diagnosa</title>
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".inline.{{ diagnosticreport_codeableconcept_formset.prefix }}").formset({
+                prefix: "{{ diagnosticreport_codeableconcept_formset.prefix }}",
+            })
+            $(".inline.{{ diagnosticreport_attachment_formset.prefix }}").formset({
+                prefix: "{{ diagnosticreport_attachment_formset.prefix }}",
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Tambah Laporan Diagnosa</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.as_p }}
+            </div>
+            <fieldset>
+                <legend>Codeable Concept</legend>
+                {{ diagnosticreport_codeableconcept_formset.management_form }}
+                {{ diagnosticreport_codeableconcept_formset.non_form_errors }}
+                {% for form in pdiagnosticreport_codeableconcept_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ diagnosticreport_codeableconcept_formset.prefix }}">
+                        {{ form.text.errors }}
+                        {{ form.text.label_tag }}
+                        {{ form.text }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <fieldset>
+                <legend>Attachment</legend>
+                {{ diagnosticreport_attachment_formset.management_form }}
+                {{ diagnosticreport_attachment_formset.non_form_errors }}
+                {% for form in diagnosticreport_attachment_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ diagnosticreport_attachment_formset.prefix }}">
+                        {{ form.url.errors }}
+                        {{ form.url.label_tag }}
+                        {{ form.url }}
+                        {{ form.title.errors }}
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" value="Simpan" class="submit" />
+        </form>
+    </div>
+</body>
+</html>

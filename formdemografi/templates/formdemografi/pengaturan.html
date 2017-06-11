@@ -1,0 +1,27 @@
+{% extends 'formdemografi/ui_base.html' %}
+
+
+{% block content %}
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+    <script type="text/javascript">
+    </script>
+
+<body>
+    <div>
+        <h1 align="center">Pengaturan</h1>
+        <br><br>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+            {% for field in form %}
+                {{ field.errors }}
+                {{ field.label_tag }}
+                {{ field }}
+            {% endfor %}
+            </div>
+            <button type="submit" id="buttonStatus">Submit</button>
+        </form>
+    </div>
+</body>
+{% endblock %}

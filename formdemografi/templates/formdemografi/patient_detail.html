@@ -1,0 +1,115 @@
+{% extends 'formdemografi/ui_pendaftaran.html' %}
+
+
+{% block content %}
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+    <script type="text/javascript">
+    </script>
+
+<body>
+    <div>
+        <h1>Detail Data Demografi Pasien</h1>
+        <ul class="list-group">
+            <li class="list-group-item"><b>Status Aktif:</b> {{patient.active}}</li>
+            <li class="list-group-item"><b>Jenis Kelamin:</b> {{patient.gender}}</li>
+            <li class="list-group-item"><b>Tanggal Lahir:</b> {{patient.birthDate}}</li>
+            <li class="list-group-item"><b>Status Pernikahan:</b> {{patient.maritalStatus}}</li>
+            <li class="list-group-item"><b>Bahasa:</b> {{patient.language}}</li>
+            <li class="list-group-item">
+                <b style="text-align:center;">Identifikasi</b>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tipe</th>
+                            <th>Nomor ID</th>
+                        </tr>
+                    </thead>
+                    {% for a in patient.identifier_set.all %}
+                    <tr>
+                        <td>{{a.Type}}</td>
+                        <td>{{a.Value}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>   
+            </li>
+            <li class="list-group-item">
+                <b>Nama</b>
+                <table class="table table-hover">   
+                    <thead>
+                        <tr>
+                            <th>Nama Lengkap</th>
+                            <th>Nama Depan</th>
+                            <th>Nama Belakang</th>
+                        </tr>
+                    </thead>
+                    {% for b in patient.humanname_set.all %}
+                    <tr>
+                        <td>{{b.text}}</td>
+                        <td>{{b.given}}</td>
+                        <td>{{b.family}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>   
+            </li>
+            <li class="list-group-item">
+                <b>Nomor Telepon</b> 
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Jenis</th>
+                        <th>Nomor</th>
+                    </tr>
+                    </thead>
+                        {% for c in patient.contactpoint_set.all %}
+                        <tr>
+                            <td>{{c.system}}</td>
+                            <td>{{c.Value}}</td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </li>
+            <li class="list-group-item">
+                <b>Alamat</b> 
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Tipe</th>
+                        <th>Teks</th>
+                        <th>Jalan</th>
+                        <th>Kota</th>
+                        <th>Distrik</th>
+                        <th>Negara (state)</th>
+                        <th>Kode Pos</th>
+                        <th>Negara</th>
+                    </tr>
+                    </thead>
+                        {% for d in patient.address_set.all %}
+                        <tr>
+                            <td>{{d.Type}}</td>
+                            <td>{{d.text}}</td>
+                            <td>{{d.line}}</td>
+                            <td>{{d.city}}</td>
+                            <td>{{d.district}}</td>
+                            <td>{{d.state}}</td>
+                            <td>{{d.postalCode}}</td>
+                            <td>{{d.country}}</td>
+                        </tr>
+                        {% endfor %}
+                </table>
+            </li>
+            <li class="list-group-item">
+                <b>Status Meninggal:</b> {{patient.deceasedBoolean}} <br>
+                <b>Tanggal Meninggal:</b> {{patient.deceasedDateTime}}
+            </li>
+        </ul>
+    
+        <p>
+        <a class="btn btn-info" href="{% url 'formdemografi:patient_update' patient.pk %}">Ubah</a>
+        <a class="btn btn-info" href="{% url 'formdemografi:patient_list' %}">Daftar Pasien</a>
+        </p>
+        
+    </div>
+</body>
+
+{% endblock %}

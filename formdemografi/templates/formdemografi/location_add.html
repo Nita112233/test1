@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tambah Lokasi</title>
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+    <script type="text/javascript">
+        // $(function() {
+        //     $(".inline.{{ location_identifier_formset.prefix }}").formset({
+        //         prefix: "{{ location_identifier_formset.prefix }}",
+        //     })
+        // })
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Tambah Lokasi</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.as_p }}
+            </div>
+            <!-- <fieldset>
+                <legend>Identifier</legend>
+                {{ location_identifier_formset.management_form }}
+                {{ location_identifier_formset.non_form_errors }}
+                {% for form in location_identifier_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ location_identifier_formset.prefix }}">
+                        {{ form.Type.errors }}
+                        {{ form.Type.label_tag }}
+                        {{ form.Type }}
+                        {{ form.value.errors }}
+                        {{ form.value.label_tag }}
+                        {{ form.value }}
+                    </div>
+                {% endfor %}
+            </fieldset> -->
+            <input type="submit" value="Simpan" class="submit" />
+        </form>
+    </div>
+</body>
+</html>

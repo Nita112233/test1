@@ -1,0 +1,27 @@
+{% extends 'formdemografi/ui_base.html' %}
+
+{% block content %}
+
+    <h1>Daftar Dokter</h1>
+    <!-- list dokter -->
+    <table>
+        <thead>
+            <tr>
+                <th>Dokter</th>
+                <th>Ketersediaan</th>
+                <th>Jumlah antrian saat ini</th>
+                <th>Tambah Antrian</th>
+            </tr>
+        </thead>
+        {% for statusDokterTersedia in statusdoktertersedia_list %}
+        <tr>
+            <td>{{statusDokterTersedia.id_user.username}}</td>
+            <!-- <td>{{ request.user.get_profile.statusDokterTersedia.SedangPraktek }}</td> -->
+            <td>{{ statusDokterTersedia.SedangPraktek }}</td>
+            <td></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
+ 

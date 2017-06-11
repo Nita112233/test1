@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>diagnosticreport_list</title>
+    </head>
+    <body>
+    <p><a href="{% url 'formdemografi:diagnosticreport_add' %}">New</a></p> 
+    {% for diagnosticreport in diagnosticreport_list %}
+    <p><a href="{% url 'formdemografi:diagnosticreport_update' diagnosticreport.pk %}">{{ diagnosticreport.issued }}</a> <!-- | {{ diagnosticreport.description }} --> </p>
+    {% endfor %}
+    </body>
+</html>
+<!-- pending -->

@@ -1,0 +1,12 @@
+{% extends 'formdemografi/ui_base.html' %}
+
+{% block content %}
+    <p><a href="{% url 'formdemografi:condition_add' %}">New</a></p> 
+    {% for condition in condition_list %}
+    <p>{{ condition.dateRecorded }} | {{ condition.code }} |
+    <a href="{% url 'formdemografi:condition_detail' condition.pk %}">Detail</a> | 
+    <a href="{% url 'formdemografi:condition_update' condition.pk %}">Ubah</a> </p>
+    {% endfor %}
+
+{% endblock %}
+ 

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>healthcareservice_list</title>
+    </head>
+    <body>
+    <p><a href="{% url 'formdemografi:healthcareservice_add' %}">New</a></p> 
+    {% for healthcareservice in healthcareservice_list %}
+    <p><a href="{% url 'formdemografi:healthcareservice_update' healthcareservice.pk %}">{{ healthcareservice.serviceCategory }}</a> | {{ healthcareservice.serviceName }} </p>
+    {% endfor %}
+    </body>
+</html>

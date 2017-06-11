@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tambah Kontak Pasien</title>
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".inline.{{ contact_humanname_formset.prefix }}").formset({
+                prefix: "{{ contact_humanname_formset.prefix }}",
+            })
+            $(".inline.{{ contact_contactpoint_formset.prefix }}").formset({
+                prefix: "{{ contact_contactpoint_formset.prefix }}",
+            })
+            $(".inline.{{ contact_address_formset.prefix }}").formset({
+                prefix: "{{ contact_address_formset.prefix }}",
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Tambah Kontak Pasien</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div>
+                {{ form.as_p }}
+            </div>
+            <fieldset>
+                <legend>Nama</legend>
+                {{ contact_humanname_formset.management_form }}
+                {{ contact_humanname_formset.non_form_errors }}
+                {% for form in contact_humanname_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ contact_humanname_formset.prefix }}">
+                        {{ form.text.errors }}
+                        {{ form.text.label_tag }}
+                        {{ form.text }}
+                        {{ form.family.errors }}
+                        {{ form.family.label_tag }}
+                        {{ form.family }}
+                        {{ form.given.errors }}
+                        {{ form.given.label_tag }}
+                        {{ form.given }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <fieldset>
+                <legend>Kontak</legend>
+                {{ contact_contactpoint_formset.management_form }}
+                {{ contact_contactpoint_formset.non_form_errors }}
+                {% for form in contact_contactpoint_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ contact_contactpoint_formset.prefix }}">
+                        {{ form.system.errors }}
+                        {{ form.system.label_tag }}
+                        {{ form.system }}
+                        {{ form.value.errors }}
+                        {{ form.value.label_tag }}
+                        {{ form.value }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <fieldset>
+                <legend>Alamat</legend>
+                {{ contact_address_formset.management_form }}
+                {{ contact_address_formset.non_form_errors }}
+                {% for form in contact_address_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ contact_address_formset.prefix }}">
+                        {{ form.use.errors }}
+                        {{ form.use.label_tag }}
+                        {{ form.use }}
+                        {{ form.Type.errors }}
+                        {{ form.Type.label_tag }}
+                        {{ form.Type }}
+                        {{ form.text.errors }}
+                        {{ form.text.label_tag }}
+                        {{ form.text }}
+                        {{ form.line.errors }}
+                        {{ form.line.label_tag }}
+                        {{ form.line }}
+                        {{ form.city.errors }}
+                        {{ form.city.label_tag }}
+                        {{ form.city }}
+                        {{ form.district.errors }}
+                        {{ form.district.label_tag }}
+                        {{ form.district }}
+                        {{ form.state.errors }}
+                        {{ form.state.label_tag }}
+                        {{ form.state }}
+                        {{ form.postalCode.errors }}
+                        {{ form.postalCode.label_tag }}
+                        {{ form.postalCode }}
+                        {{ form.country.errors }}
+                        {{ form.country.label_tag }}
+                        {{ form.country }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+
+            <input type="submit" value="Simpan" class="submit" />
+        </form>
+    </div>
+</body>
+</html>

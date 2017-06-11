@@ -1,0 +1,107 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Rekam Medis Elektronik</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/csss.css' %}">
+    <script type="text/javascript" src="{% static 'js/jss.js' %}"></script>
+    <script>
+
+    </script>
+
+<nav class="navbar navbar-toggleable-md navbar-default fixed-top" data-spy="affix">
+    <div id="containernav">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Rekam Medis Elektronik</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'formdemografi:condition_list' %}">Daftar Rekam Medis</a></li>
+                <li><a href="{% url 'formdemografi:condition_list' %}">Riwayat Kegiatan</a></li>
+                <li><a href="{% url 'formdemografi:condition_list' %}">Pasien Saya</a></li>
+                <li><a>Selamat Datang, {{request.user.username}}!</a></li>                
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-user">
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url 'formdemografi:pengaturan' %}"><span class="glyphicon glyphicon-cog"></span> Pengaturan</a></li>
+                        <li><a href="{% url 'formdemografi:logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                    </ul>
+                </div>         
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="row-offcanvas row-offcanvas-left">
+    <div id="sidebar" class="sidebar-offcanvas">
+        <div class="col-md-12">
+            <ul class="nav nav-pills nav-stacked" id="navy">
+                <li class="active"><a href="{% url 'formdemografi:dashboard' %}">Dashboard Dokter</a></li>
+            </ul>
+            <br>
+            <ul class="list-group">
+                <li class="list-group-item"><h5 align="center">Status Saya</h5>
+<!--                 <p>{% for statusDokterTersedia in statusdoktertersedia_list %}
+                    {{ statusDokterTersedia.SedangPraktek | last}}
+                {% endfor %}
+                </p> -->
+                {% with statusDokterTersedia|last as last %}
+                    {{ last.SedangPraktek }}
+                {% endwith %}
+
+                    <!-- <form action="ubah_status_dokter" method="post"> -->
+                    <!-- <label class="switch" id="switchstat">
+                            <input class="switch-input" type="checkbox" />
+                            <span class="switch-label" data-on="Praktek" data-off="Istirahat"></span>  -->
+                            <!-- <span class="switch-handle"></span>  -->
+                    <!-- </label> --> 
+                    <!-- </form> -->
+                    <!-- <label for="flip-1"></label> -->
+                    <!-- <form action="." method="post"> -->
+<!--                     <select name="flip-1" id="flip-1" data-role="slider">
+                        <option value="off">Off</option>
+                        <option value="on">On</option>
+                    </select>  -->
+                    
+                </li>
+            </ul>
+            <div class="panel panel-info">
+                <div class="panel-heading">Sync Status</div>
+                <div class="panel-body">
+                    <p style="font-size:13px">Status: </p>
+                    <p style="font-size:13px">Sinkronisasi Terakhir: </p>
+                    <p style="font-size:13px">Lokasi: </p>
+                    <p style="font-size:13px">Rumah Sakit: </p>
+                    <p style="font-size:13px">Poli: </p>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        <div class="well">
+            {% block content %}
+                            
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+
+</html>

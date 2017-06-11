@@ -1,0 +1,27 @@
+{% extends 'formdemografi/ui_base.html' %}
+
+{% block content %}
+    <h1>Daftar Antrian Pasien</h1>
+    <!-- list pasien -->
+
+    <table>
+    	<thead>
+    		<tr>
+    			<th>Pengguna</th>
+    			<th>Ketersediaan</th>
+                <th>Tanggal</th>
+    		</tr>
+    	</thead>
+        {% for statusDokterTersedia in statusdoktertersedia_list %}
+    	<tr>
+    		<td>{{statusDokterTersedia.id_user.username}}</td>
+    		<td>{{ statusDokterTersedia.SedangPraktek }}</td>
+            <td>{{statusDokterTersedia.date_created}}</td>
+    	</tr>
+        {% endfor %}
+    </table>
+
+    
+
+{% endblock %}
+ 

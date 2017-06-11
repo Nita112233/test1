@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>encounter_list</title>
+    </head>
+    <body>
+    <p><a href="{% url 'formdemografi:encounter_add' %}">New</a></p> 
+    {% for encounter in encounter_list %}
+    <p><a href="{% url 'formdemografi:encounter_update' encounter.pk %}">{{ encounter.Class }}</a></p>
+    {% endfor %}
+    </body>
+</html>

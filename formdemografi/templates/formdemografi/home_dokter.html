@@ -1,0 +1,35 @@
+{% extends 'formdemografi/ui_base.html' %}
+
+{% block content %}
+    <h1>Daftar Antrian Pasien</h1>
+    <!-- list pasien -->
+
+    <table>
+    	<thead>
+    		<tr>
+    			<th>Nomor Rekam Medis</th>
+    			<th>Nama Pasien</th>
+    			<th>Nomor Urut</th>
+    			<th>Proses</th>
+    			<th>Mutasi(Rawat Inap)</th>
+    		</tr>
+    	</thead>
+    	<tr>
+    		<td>patient.identifier.type=RM.value</td>
+    		<td>patient.humanName.text</td>
+    		<td></td>
+    		<td><a href="{% url 'formdemografi:patient_update' patient.pk %}">Ubah</a></td>
+    		<td><a href="{% url 'formdemografi:patient_update' patient.pk %}">Ubah</a></td>
+    	</tr>
+    </table>
+
+    {% for patient in patient_list %}
+    <p>
+    {{ patient.id_patient }} | <a href="{% url 'formdemografi:patient_detail' patient.pk %}">Detail</a> |
+    <a href="{% url 'formdemografi:patient_update' patient.pk %}">Ubah</a>
+    </p>
+    {% endfor %}
+
+
+{% endblock %}
+ 

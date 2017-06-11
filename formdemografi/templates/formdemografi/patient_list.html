@@ -1,0 +1,13 @@
+{% extends 'formdemografi/ui_pendaftaran.html' %}
+
+{% block content %}
+    <p><a href="{% url 'formdemografi:patient_add' %}">New</a></p> 
+    {% for patient in patient_list %}
+    <p>
+    {{ patient.id_patient }} | <a href="{% url 'formdemografi:patient_detail' patient.pk %}">Detail</a> |
+    <a href="{% url 'formdemografi:patient_update' patient.pk %}">Ubah</a>
+    </p>
+    {% endfor %}
+{% endblock %}
+
+<!-- tambahin tabel -->

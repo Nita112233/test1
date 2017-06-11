@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<title>patient_list</title>
+	</head>
+	<body>
+    <p><a href="{% url 'patient_create' %}">New</a></p> 
+    {% for patient in patient_list %}
+    <p><a href="{% url 'patient_update' patient.pk %}">{{ patient.active }}</a> | {{ patient.birthDate }} </p>
+    {% endfor %}
+	</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8" />
+		<title>patient_form</title>
+	</head>
+	<body>
+      <form method="post" action="">
+         {% csrf_token %}
+    <table>
+      {{ form }}
+    </table>
+    <table>
+	  {{ patient_identifier_formSet }}
+    </table>
+    <!-- <input type="submit"/> -->
+    <button type="submit" class="save btn btn-default">Simpan</button>
+    </form>
+	</body>
+</html>

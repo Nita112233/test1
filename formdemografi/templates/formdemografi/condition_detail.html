@@ -1,0 +1,61 @@
+{% extends 'formdemografi/ui_base.html' %}
+
+
+{% block content %}
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+    <script type="text/javascript"></script>
+
+<body>
+    <div>
+        <h1>Detail Rekam Medis</h1>
+        <ul class="list-group">
+            <li class="list-group-item"><b>Kode:</b> {{condition.code}}</li>
+            <li class="list-group-item">
+                <b style="text-align:center;">Identifikasi</b>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tipe</th>
+                            <th>Nomor ID</th>
+                        </tr>
+                    </thead>
+                    {% for a in condition.identifier_set.all %}
+                    <tr>
+                        <td>{{a.Type}}</td>
+                        <td>{{a.Value}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>   
+            </li>
+            <li class="list-group-item"><b>Kategori:</b> {{condition.category}}</li>
+            <li class="list-group-item"><b>Letak secara anatomi:</b> {{condition.bodySite}}</li>
+            <li class="list-group-item"><b>Catatan:</b> {{condition.notes}}</li>           
+            <li class="list-group-item">
+                <b>Bukti/Evidence</b>
+                <table class="table table-hover">   
+                    <thead>
+                        <tr>
+                            <th>Kode</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    {% for b in condition.evidence_set.all %}
+                    <tr>
+                        <td>{{b.code}}</td>
+                        <td>{{b.detail}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>   
+            </li>
+        </ul>
+    
+        <p>
+        <a class="btn btn-info" href="{% url 'formdemografi:condition_update' condition.pk %}">Ubah</a>
+        <a class="btn btn-info" href="{% url 'formdemografi:condition_list' %}">Daftar Rekam Medis</a>
+        </p>
+        
+    </div>
+</body>
+
+{% endblock %}

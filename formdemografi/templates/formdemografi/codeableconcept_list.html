@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>codeableconcept_list</title>
+    </head>
+    <body>
+    <p><a href="{% url 'formdemografi:codeableconcept_add' %}">New</a></p> 
+    {% for codeableconcept in codeableconcept_list %}
+    <p><a href="{% url 'formdemografi:codeableconcept_update' codeableconcept.pk %}">{{ codeableconcept.text }}</a></p>
+    {% endfor %}
+    </body>
+</html>

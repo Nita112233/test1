@@ -1,0 +1,84 @@
+{% extends 'formdemografi/ui_base.html' %}
+
+
+{% block content %}
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".inline.{{ condition_identifier_formset.prefix }}").formset({
+                prefix: "{{ condition_identifier_formset.prefix }}",
+            })
+            $(".inline.{{ condition_evidence_formset.prefix }}").formset({
+                prefix: "{{ condition_evidence_formset.prefix }}",
+            })
+            $(".inline.{{ condition_reference_formset.prefix }}").formset({
+                prefix: "{{ condition_reference_formset.prefix }}",
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1 align="center">Add Condition</h1>
+        <br><br>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                <table>
+                {% for field in form %}
+                    <tr>
+                        <td>
+                            {{ field.errors }}
+                            {{ field.label_tag }}
+                        </td>
+                        <td>
+                            {{ field }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <br>
+            <fieldset>
+                <legend>Identifier</legend>
+                {{ condition_identifier_formset.management_form }}
+                {{ condition_identifier_formset.non_form_errors }}
+                {% for form in condition_identifier_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ condition_identifier_formset.prefix }}">
+                        {{ form.Type.errors }}
+                        {{ form.Type.label_tag }}
+                        {{ form.Type }}
+                        {{ form.Value.errors }}
+                        {{ form.Value.label_tag }}
+                        {{ form.Value }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Evidence</legend>
+                {{ condition_evidence_formset.management_form }}
+                {{ condition_evidence_formset.non_form_errors }}
+                {% for form in condition_evidence_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ condition_evidence_formset.prefix }}">
+                        {{ form.code.errors }}
+                        {{ form.code.label_tag }}
+                        {{ form.code }}<br/>
+                        {{ form.detail.errors }}
+                        {{ form.detail.label_tag }}<br/>
+                        {{ form.detail }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+
+            <br>
+            <hr>
+            <input type="submit" value="Simpan" class="btn btn-info center-block" />
+        </form>
+    </div>
+</body>
+{% endblock %}

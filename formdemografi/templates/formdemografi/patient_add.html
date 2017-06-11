@@ -1,0 +1,196 @@
+{% extends 'formdemografi/ui_pendaftaran.html' %}
+
+
+{% block content %}
+
+    <script src="{{ STATIC_URL }}js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.formset.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $(".inline.{{ patient_identifier_formset.prefix }}").formset({
+                prefix: "{{ patient_identifier_formset.prefix }}",
+            })
+            $(".inline.{{ patient_humanname_formset.prefix }}").formset({
+                prefix: "{{ patient_humanname_formset.prefix }}",
+            })
+            $(".inline.{{ patient_contactpoint_formset.prefix }}").formset({
+                prefix: "{{ patient_contactpoint_formset.prefix }}",
+            })
+            $(".inline.{{ patient_address_formset.prefix }}").formset({
+                prefix: "{{ patient_address_formset.prefix }}",
+            })
+            $(".inline.{{ patient_attachment_formset.prefix }}").formset({
+                prefix: "{{ patient_attachment_formset.prefix }}",
+            })
+        })
+    </script>
+
+<body>
+    <div class="clr-base">
+        <h1 align="center">Tambah Data Demografi Pasien</h1>
+        <br><br>
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="fieldWrapper">
+                <table>
+                {% for field in form %}
+                    <tr>
+                        <td>
+                            {{ field.errors }}
+                            {{ field.label_tag }}
+                        </td>
+                        <td>
+                            {{ field }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            
+            <br>
+            <fieldset>
+                <legend>Identifier</legend>
+                {{ patient_identifier_formset.management_form }}
+                {{ patient_identifier_formset.non_form_errors }}
+                {% for form in patient_identifier_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ patient_identifier_formset.prefix }}">
+                        {{ form.Type.errors }}
+                        {{ form.Type.label_tag }}
+                        {{ form.Type }}
+                        {{ form.Value.errors }}
+                        {{ form.Value.label_tag }}
+                        {{ form.Value }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Nama</legend>
+                {{ patient_humanname_formset.management_form }}
+                {{ patient_humanname_formset.non_form_errors }}
+                {% for form in patient_humanname_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ patient_humanname_formset.prefix }}">
+                        {{ form.text.errors }}
+                        {{ form.text.label_tag }}
+                        {{ form.text }}
+                        {{ form.family.errors }}
+                        {{ form.family.label_tag }}
+                        {{ form.family }}
+                        {{ form.given.errors }}
+                        {{ form.given.label_tag }}
+                        {{ form.given }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Kontak</legend>
+                {{ patient_contactpoint_formset.management_form }}
+                {{ patient_contactpoint_formset.non_form_errors }}
+                {% for form in patient_contactpoint_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ patient_contactpoint_formset.prefix }}">
+                        {{ form.system.errors }}
+                        {{ form.system.label_tag }}
+                        {{ form.system }}
+                        {{ form.Value.errors }}
+                        {{ form.Value.label_tag }}
+                        {{ form.Value }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Alamat</legend>
+                {{ patient_address_formset.management_form }}
+                {{ patient_address_formset.non_form_errors }}
+                {% for form in patient_address_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ patient_address_formset.prefix }}" style="overflow-x:auto;">
+                        {{ form.Type.errors }}
+                        {{ form.Type.label_tag }} 
+                        {{ form.Type }} <br/>
+                        {{ form.text.errors }}
+                        {{ form.text.label_tag }} <br/>
+                        {{ form.text }}<br/>
+                        {{ form.line.errors }}
+                        {{ form.line.label_tag }}<br/>
+                        {{ form.line }}<br/>
+                        {{ form.city.errors }}
+                        {{ form.city.label_tag }}<br/>
+                        {{ form.city }}<br/>
+                        {{ form.district.errors }}
+                        {{ form.district.label_tag }}<br/>
+                        {{ form.district }}<br/>
+                        {{ form.state.errors }}
+                        {{ form.state.label_tag }}<br/>
+                        {{ form.state }}<br/>
+                        {{ form.postalCode.errors }}
+                        {{ form.postalCode.label_tag }}<br/>
+                        {{ form.postalCode }}<br/>
+                        {{ form.country.errors }}
+                        {{ form.country.label_tag }}<br/>
+                        {{ form.country }}<br/>
+
+                        <!-- <table>
+                            <thead>
+                            <tr>
+                                <th>{{ form.Type.label_tag }}</th>
+                                <th>{{ form.text.label_tag }}</th>
+                                <th>{{ form.line.label_tag }}</th>
+                                <th>{{ form.city.label_tag }}</th>
+                                <th>{{ form.district.label_tag }}</th>
+                                <th>{{ form.state.label_tag }}</th>
+                                <th>{{ form.postalCode.label_tag }}</th>
+                                <th>{{ form.country.label_tag }}</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <td>{{ form.Type.errors }}
+                                    {{ form.Type }} </td>
+                                <td>{{ form.text.errors }}
+                                    {{ form.text }}</td>
+                                <td>{{ form.line.errors }}
+                                    {{ form.line }}</td>
+                                <td>{{ form.city.errors }}
+                                    {{ form.city }}</td>
+                                <td>{{ form.district.errors }}
+                                    {{ form.district }}</td>
+                                <td>{{ form.state.errors }}
+                                    {{ form.state }}</td>
+                                <td>{{ form.postalCode.errors }}
+                                    {{ form.postalCode }}</td>
+                                <td>{{ form.country.errors }}
+                                    {{ form.country }}</td>
+                            </tr>
+                        </table> -->
+                    </div><br>
+                {% endfor %}
+            </fieldset>
+            <br>
+            <fieldset>
+                <legend>Attachment</legend>
+                {{ patient_attachment_formset.management_form }}
+                {{ patient_attachment_formset.non_form_errors }}
+                {% for form in patient_attachment_formset %}
+                    {{ form.id }}
+                    <div class="inline {{ patient_attachment_formset.prefix }}">
+                        {{ form.url.errors }}
+                        {{ form.url.label_tag }}
+                        {{ form.url }}
+                        {{ form.title.errors }}
+                        {{ form.title.label_tag }}
+                        {{ form.title }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <br>
+            <hr>
+            <input type="submit" value="Simpan" class="btn btn-info center-block" />
+        </form>
+    </div>
+</body>
+
+{% endblock %}
