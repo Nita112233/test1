@@ -34,9 +34,7 @@ flake8==2.4.1
 freeze==1.0.10
 funcsigs==1.0.2
 futures==3.1.1
-generateDS==2.22a0
 get==0.0.11
-hl7apy==1.1.2
 imageio==1.6
 ipaddress==1.0.18
 ipdb==0.8.3
@@ -47,8 +45,6 @@ lxml==3.6.0
 Markdown==2.6.8
 mccabe==0.3.1
 mock==2.0.0
-moviepy==0.2.2.11
-music21==3.1.0
 mysqlclient==1.3.9
 nose==1.3.7
 numpy==1.11.2
@@ -63,6 +59,7 @@ public==0.0.33
 py==1.4.33
 pyflakes==0.8.1
 Pygments==2.2.0
+pyodbc==4.0.16
 pyreadline==2.1
 pytest==3.0.7
 pytest-cov==2.4.0
@@ -71,7 +68,6 @@ pytest-pythonpath==0.7.1
 python-dateutil==2.6.0
 python-memcached==1.58
 pytz==2017.2
-PyXB==1.2.4
 query-string==0.0.8
 request==0.0.8
 requests==2.13.0
