@@ -25,7 +25,7 @@ djangorestframework==3.6.3
 docopt==0.6.2
 docutils==0.12
 dropbox==7.2.1
-ez-setup==0.9
+ez_setup==0.9
 factory-boy==2.8.1
 Faker==0.7.11
 fancycompleter==0.7
