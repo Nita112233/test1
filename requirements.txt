@@ -18,6 +18,7 @@ django-extensions==1.7.8
 django-filter==1.0.4
 django-grappelli==2.6.5
 django-import-data==0.4.2
+django-pyodbc==1.1.0
 django-queued-storage==0.8.0
 django-simple-history==1.8.2
 django-storages==1.5.2
@@ -25,7 +26,7 @@ djangorestframework==3.6.3
 docopt==0.6.2
 docutils==0.12
 dropbox==7.2.1
-ez_setup==0.9
+ez-setup==0.9
 factory-boy==2.8.1
 Faker==0.7.11
 fancycompleter==0.7
@@ -62,7 +63,6 @@ public==0.0.33
 py==1.4.33
 pyflakes==0.8.1
 Pygments==2.2.0
-pyodbc==3.0.10
 pyreadline==2.1
 pytest==3.0.7
 pytest-cov==2.4.0
@@ -77,7 +77,6 @@ request==0.0.8
 requests==2.13.0
 s3transfer==0.1.10
 setupfiles==0.0.13
-setuptools==36.0.1
 six==1.10.0
 SQLAlchemy==1.1.9
 sqlparse==0.2.2
