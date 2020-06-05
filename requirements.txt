@@ -7,7 +7,7 @@ coverage==3.7.1
 decorator==4.0.10
 dicttoxml==1.7.4
 dj-database-url==0.4.2
-Django==1.11.2
+Django==1.11.29
 django-appconf==1.0.2
 django-bootstrap-form==3.2.1
 django-bootstrap3==7.0.1
